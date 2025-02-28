@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('actor_film', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('actor_id', 11);
-            $table->unsignedBigInteger('film_id', 11);
+            $table->unsignedBigInteger('actor_id');
+            $table->unsignedBigInteger('film_id');
             $table->timestamps();
         });
     }

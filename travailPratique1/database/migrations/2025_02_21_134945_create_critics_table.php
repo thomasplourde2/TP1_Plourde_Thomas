@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('critics', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id', 11);
-            $table->unsignedBigInteger('film_id', 11);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('film_id');
             $table->decimal('score', 3, 1);
             $table->text('comment')->nullable();
             $table->timestamps();
