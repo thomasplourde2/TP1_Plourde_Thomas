@@ -13,7 +13,7 @@ class ActorSeeder extends Seeder
      */
     public function run(): void
     {
-        $sql = file_get_contents(database_path() . '/seeders/actor.sql');
+        $sql = file_get_contents(database_path() . '/seeders/actors.sql');
         DB::statement($sql);
     }
 }

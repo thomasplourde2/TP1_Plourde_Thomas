@@ -13,7 +13,7 @@ class LanguageSeeder extends Seeder
      */
     public function run(): void
     {
-        $sql = file_get_contents(database_path() . '/seeders/language.sql');
+        $sql = file_get_contents(database_path() . '/seeders/languages.sql');
         DB::statement($sql);
     }
 }
