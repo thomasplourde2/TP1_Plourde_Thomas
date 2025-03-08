@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\FilmResource;
+use App\Http\Resources\CriticResource;
 use Illuminate\Http\Request;
-use App\Models\Film;
+use App\Models\Critic;
 use Exception;
+use Illuminate\Database\QueryException;
 
-class FilmController extends Controller
+class CriticController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        try{
-            return FilmResource::collection(Film::paginate(10))->response()->setStatusCode(OK);    
-        }
-        catch(Exception $ex){
-            abort(SERVER_ERROR, 'Server error');
-        }
+        //
     }
 
     /**
@@ -51,6 +47,16 @@ class FilmController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            $critic = Critic::findOrFail($id);
+            $critic->delete();
+            return (new CriticResource($critic))->response()->setStatusCode(NO_CONTENT);
+        }
+        catch(QueryException $ex){
+            abort(INVALID_DATA, 'Invalid data');
+        }
+        catch(Exception $ex){
+            abort(SERVER_ERROR, 'Server error');
+        }
     }
 }

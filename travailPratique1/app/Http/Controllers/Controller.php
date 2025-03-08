@@ -7,6 +7,7 @@ define('NOT_FOUND', 404);
 define('SERVER_ERROR', 500);
 define('TABLE_CREATED', 201);
 define('OK', 200);
+define('NO_CONTENT', 204);
 
 abstract class Controller
 {

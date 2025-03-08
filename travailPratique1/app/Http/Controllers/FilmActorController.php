@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\FilmResource;
+use App\Http\Resources\ActorResource;
 use Illuminate\Http\Request;
 use App\Models\Film;
 use Exception;
+use Illuminate\Database\QueryException;
 
-class FilmController extends Controller
+class FilmActorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
         try{
-            return FilmResource::collection(Film::paginate(10))->response()->setStatusCode(OK);    
+            return ActorResource::collection(Film::findOrFail($id)->actors)->response()->setStatusCode(OK);
+        }
+        catch(QueryException $ex){
+            abort(NOT_FOUND, 'Invalid Id');
         }
         catch(Exception $ex){
             abort(SERVER_ERROR, 'Server error');
